@@ -25,11 +25,11 @@ var paths = {
 
 // Styles
 gulp.task('styles', function() {
-  return gulp.src('assets/styles/main.scss')
+  return gulp.src('assets/styles/**/*.scss')
     .pipe(sass({ style: 'expanded', }))
+    .on('error', function (err) { console.log(err.message); })
     .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
     .pipe(gulp.dest('build/assets/styles'))
-    .on('error', function (err) { console.log(err.message); })
     .pipe(notify({ message: 'Styles task complete' }));
 });
 
