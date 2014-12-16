@@ -14,8 +14,6 @@ node.js
 npm (this comes with node these days)
 gulp
 bower
-bourbon gem
-neat gem
 
 ### Installation
 
