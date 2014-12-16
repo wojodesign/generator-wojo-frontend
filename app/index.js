@@ -46,6 +46,7 @@ var BourbonNeatGenerator = yeoman.generators.Base.extend({
       this.appName = props.appName;
       this.appDescription = props.appDescription;
       this.authorName = props.authorName;
+      this.shortName = this.appName.replace(/[^a-z0-9]/gi, '_').toLowerCase();
 
       done();
     }.bind(this));
@@ -54,29 +55,23 @@ var BourbonNeatGenerator = yeoman.generators.Base.extend({
   scaffoldDirectories: function(){
     this.mkdir('assets');
     this.mkdir('assets/scripts');
-    this.mkdir('assets/styles');
+    this.mkdir('assets/scss');
     this.mkdir('assets/fonts');
     this.mkdir('assets/images');
-
-    this.mkdir('build');
-    this.mkdir('build/assets');
-    this.mkdir('build/assets/scripts');
-    this.mkdir('build/assets/styles');
-    this.mkdir('build/assets/fonts');
-    this.mkdir('build/assets/images');
   },
 
   app: function () {
-    this.template('_index.html', 'index.html');
-    this.template('_package.json', 'package.json');
-    this.template('_bower.json', 'bower.json');
-    this.copy('bowerrc', '.bowerrc');
-    this.template('_gulpfile.js', 'gulpfile.js');
+	this.template('_index.html', 'index.html');
+	this.template('_package.json', 'package.json');
+	this.template('_bower.json', 'bower.json');
+	this.copy('bowerrc', '.bowerrc');
+	this.template('_gulpfile.js', 'gulpfile.js');
 
-    this.copy('_main.scss', 'assets/styles/main.scss');
-    this.directory('base', 'assets/styles/base');
-    this.copy('favicon.ico', 'favicon.ico');
-    this.copy('htaccess', '.htaccess');
+	this.copy('_main.scss', 'assets/scss/main.scss');
+	this.copy('_app.js', 'assets/scripts/app.js');
+	this.directory('base', 'assets/scss/base');
+	this.copy('favicon.ico', 'favicon.ico');
+	this.copy('htaccess', '.htaccess');
   },
 
   projectfiles: function () {

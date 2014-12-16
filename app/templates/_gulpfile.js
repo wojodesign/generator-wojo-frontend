@@ -1,7 +1,8 @@
- 
+
 // Load plugins
 var gulp = require('gulp'),
-    sass = require('gulp-ruby-sass'),
+    sass = require('gulp-ruby-sass'), //uncomment this line to use ruby-sass
+    //sass = require('gulp-sass'), //comment this lineto use ruby-sass
     autoprefixer = require('gulp-autoprefixer'),
     minifycss = require('gulp-minify-css'),
     jshint = require('gulp-jshint'),
@@ -17,86 +18,69 @@ var gulp = require('gulp'),
     livereload = require('gulp-livereload');
 
 var paths = {
-  scripts: ['assets/scripts/**/*.js'],
+  scripts: 'assets/scripts',
   images: 'assets/images/**/*',
-  styles: ['assets/styles/**/*.scss', 'assets/styles/**/*.css' ],
+  scss: ['assets/scss/**/*.scss' ],
+  css: 'assets/css',
   vendor: ['assets/vendor/**/*.css', 'assets/vendor/**/*.js' ]
 }
 
-// Styles
 gulp.task('styles', function() {
-  return gulp.src('assets/styles/**/*.scss')
-    .pipe(sass({ style: 'expanded', }))
+  return gulp.src(paths.scss)
+  	//.pipe(sass({errLogToConsole: true})) //uncomment this line to use ruby-sass
+    .pipe(sass({ style: 'expanded', lineNumbers: true})) //comment this lineto use ruby-sass
     .on('error', function (err) { console.log(err.message); })
     .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
-    .pipe(gulp.dest('build/assets/styles'))
+    .pipe(gulp.dest(paths.css))
+    .pipe(rename({suffix: '.min'}))
+    .pipe(minifycss())
+    .pipe(gulp.dest(paths.css))
     .pipe(notify({ message: 'Styles task complete' }));
 });
 
 
- 
+
 // Scripts
 gulp.task('scripts', function() {
-  return gulp.src(paths.scripts)
+  return gulp.src([paths.scripts + '/**/*.js', '!'+paths.scripts+'/**/*.min.js'])
     .pipe(jshint('.jshintrc'))
     .pipe(jshint.reporter('jshint-stylish'))
-    .pipe(gulp.dest('build/assets/scripts'))
+    .pipe(rename({suffix: '.min'}))
+    .pipe(uglify())
+    .pipe(gulp.dest(paths.scripts))
     .pipe(notify({ message: 'Scripts task complete' }));
 });
- 
+
 // Images
 gulp.task('images', function() {
   return gulp.src(paths.images)
     .pipe(cache(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true })))
-    .pipe(gulp.dest('build/assets/images'))
+    .pipe(gulp.dest(paths.images))
     .pipe(notify({ message: 'Images task complete yo' }));
 });
 
-//be sure to update the src here
-gulp.task('usemin', ['styles', 'scripts', 'images'], function() {
-  gulp.src('./*.html')
-    .pipe(usemin({
-      css: [minifycss(), 'concat'],
-      js: [uglify(), 'concat']
-    }))
-    .pipe(gulp.dest('build'));
-});
- 
-// Clean
-gulp.task('clean', function() {
-  return gulp.src(['build/assets/styles', 'build/assets/scripts', 'build/assets/images', 'build/assets/vendor'], {read: false})
-    .pipe(clean());
-});
- 
+
 // Default task
-gulp.task('default', ['clean'], function() {
-    gulp.start('styles', 'scripts', 'images');
+gulp.task('default', ['scss', 'scripts', 'images'], function() {
+
 });
 
 // Production Build
 gulp.task('production', ['usemin'], function() {
-    
+
 });
 
- 
+
 // Watch
 gulp.task('watch', function() {
- 
+
   // Watch .scss files
-  gulp.watch('assets/styles/**/*.scss', ['styles']);
- 
+  gulp.watch(paths.scss, ['styles']);
+
   // Watch .js files
-  //gulp.watch('src/scripts/**/*.js', ['scripts']);
- 
+  gulp.watch(paths.scripts + '/**/*.js', ['scripts']);
+
   // Watch image files
   //gulp.watch('src/images/**/*', ['images']);
- 
-  // Create LiveReload server
-  //var server = livereload();
- 
-  // Watch any files in build/assets/, reload on change
-  // gulp.watch(['build/assets/**']).on('change', function(file) {
-  //   server.changed(file.path);
-  // });
- 
+
 });

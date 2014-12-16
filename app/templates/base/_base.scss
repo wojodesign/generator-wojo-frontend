@@ -8,18 +8,19 @@
 @import 'grid-settings';
 
 // Mixins
-@import 'mixins/flash';
 @import 'mixins/animate';
 
 // Extends
-@import 'extends/button';
-@import 'extends/clearfix';
-@import 'extends/hide-text';
+@import "extends/button";
+@import "extends/clearfix";
+@import "extends/errors";
+@import "extends/flashes";
+@import "extends/hide-text";
 
 // Typography and Elements
-@import 'typography';
-@import 'forms';
-@import 'tables';
-@import 'lists';
-@import 'flashes';
-@import 'buttons';
+@import "typography";
+@import "forms";
+@import "tables";
+@import "lists";
+@import "buttons";
+
