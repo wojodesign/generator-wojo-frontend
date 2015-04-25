@@ -1,8 +1,8 @@
 
 // Load plugins
 var gulp = require('gulp'),
-    sass = require('gulp-ruby-sass'), //uncomment this line to use ruby-sass
-    //sass = require('gulp-sass'), //comment this lineto use ruby-sass
+    //sass = require('gulp-ruby-sass'), //uncomment this line to use ruby-sass
+    sass = require('gulp-sass'), //comment this lineto use ruby-sass
     autoprefixer = require('gulp-autoprefixer'),
     minifycss = require('gulp-minify-css'),
     jshint = require('gulp-jshint'),
@@ -18,10 +18,11 @@ var gulp = require('gulp'),
     livereload = require('gulp-livereload');
 
 var paths = {
-  scripts: 'assets/scripts',
-  images: 'assets/images/**/*',
+  devScripts: 'assets/scripts',
+  scripts: 'js',
+  images: 'images/**/*',
   scss: ['assets/scss/**/*.scss' ],
-  css: 'assets/css',
+  css: 'css',
   vendor: ['assets/vendor/**/*.css', 'assets/vendor/**/*.js' ]
 }
 
@@ -42,7 +43,7 @@ gulp.task('styles', function() {
 
 // Scripts
 gulp.task('scripts', function() {
-  return gulp.src([paths.scripts + '/**/*.js', '!'+paths.scripts+'/**/*.min.js'])
+  return gulp.src([paths.devScripts + '/**/*.js', '!'+paths.devScripts+'/**/*.min.js'])
     .pipe(jshint('.jshintrc'))
     .pipe(jshint.reporter('jshint-stylish'))
     .pipe(rename({suffix: '.min'}))
@@ -61,7 +62,7 @@ gulp.task('images', function() {
 
 
 // Default task
-gulp.task('default', ['scss', 'scripts', 'images'], function() {
+gulp.task('default', ['styles', 'scripts', 'images'], function() {
 
 });
 
@@ -78,7 +79,7 @@ gulp.task('watch', function() {
   gulp.watch(paths.scss, ['styles']);
 
   // Watch .js files
-  gulp.watch(paths.scripts + '/**/*.js', ['scripts']);
+  gulp.watch(paths.devScripts + '/**/*.js', ['scripts']);
 
   // Watch image files
   //gulp.watch('src/images/**/*', ['images']);

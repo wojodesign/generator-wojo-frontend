@@ -57,11 +57,20 @@ var BourbonNeatGenerator = yeoman.generators.Base.extend({
     this.mkdir('assets/scripts');
     this.mkdir('assets/scss');
     this.mkdir('assets/fonts');
-    this.mkdir('assets/images');
+    this.mkdir('css');
+    this.mkdir('js');
+    this.mkdir('images');
   },
 
   app: function () {
-	this.template('_index.html', 'index.html');
+	this.template('_index.php', 'index.php');
+  this.template('_header.php', 'header.php');
+  this.template('_footer.php', 'footer.php');
+  this.template('_functions.php', 'functions.php');
+  this.template('_loop.php', 'loop.php');
+  this.template('_page.php', 'page.php');
+  this.template('_style.css', 'style.css');
+
 	this.template('_package.json', 'package.json');
 	this.template('_bower.json', 'bower.json');
 	this.copy('bowerrc', '.bowerrc');
