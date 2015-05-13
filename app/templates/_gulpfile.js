@@ -61,7 +61,7 @@ gulp.task('images', function() {
 
 
 // Default task
-gulp.task('default', ['scss', 'scripts', 'images'], function() {
+gulp.task('default', ['styles', 'scripts', 'images'], function() {
 
 });
 
