@@ -1,8 +1,8 @@
 
 // Load plugins
 var gulp = require('gulp'),
-    sass = require('gulp-ruby-sass'), //uncomment this line to use ruby-sass
-    //sass = require('gulp-sass'), //comment this lineto use ruby-sass
+    //sass = require('gulp-ruby-sass'), //uncomment this line to use ruby-sass
+    sass = require('gulp-sass'), //comment this lineto use ruby-sass
     autoprefixer = require('gulp-autoprefixer'),
     minifycss = require('gulp-minify-css'),
     jshint = require('gulp-jshint'),
@@ -27,8 +27,8 @@ var paths = {
 
 gulp.task('styles', function() {
   return gulp.src(paths.scss)
-  	//.pipe(sass({errLogToConsole: true})) //uncomment this line to use ruby-sass
-    .pipe(sass({ style: 'expanded', lineNumbers: true})) //comment this lineto use ruby-sass
+    //.pipe(sass({errLogToConsole: true})) //uncomment this line to use ruby-sass
+    .pipe(sass({ style: 'expanded', lineNumbers: true, errLogToConsole: true })) //comment this lineto use ruby-sass
     .on('error', function (err) { console.log(err.message); })
     .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
     .pipe(gulp.dest(paths.css))

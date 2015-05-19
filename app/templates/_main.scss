@@ -1,5 +1,29 @@
 @import 'base/normalize';
 @import '../vendor/bourbon/dist/bourbon';
-@import 'base/grid-settings';
-@import '../vendor/neat/app/assets/stylesheets/neat';
+@import '../vendor/susy/sass/susy';
+@import '../vendor/breakpoint-sass/stylesheets/breakpoint';
 @import 'base/base';
+
+
+// delcare the susy grid settings
+$susy: (
+  columns: 4,
+  gutters: .25,
+  container: 100%
+);
+
+// min-width breakpoint
+$large-screen: 860px;
+
+.main {
+	@include container();
+	// mobile styles here
+	background: black;
+	height: 1000px;
+
+	@include susy-breakpoint ($large-screen, 12) {
+		@include container(960px);
+		// desktop styles here
+		background: blue;
+	}
+}
