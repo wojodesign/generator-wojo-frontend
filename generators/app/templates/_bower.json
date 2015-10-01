@@ -1,0 +1,11 @@
+{
+  "name": "<%= appName %>",
+  "private": true,
+  "version": "0.0.0",
+  "dependencies": {
+    "bourbon": "^4.2.5",
+    "jquery": "~1.11.0"
+  },
+  "devDependencies": {}
+}
+

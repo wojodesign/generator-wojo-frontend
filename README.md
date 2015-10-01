@@ -1,32 +1,47 @@
-# Wojo Bourbon Neat Bitters Generator
+# generator-wojo-frontend [![Build Status](https://secure.travis-ci.org/wojodesign/generator-wojo-frontend.png?branch=master)](https://travis-ci.org/wojodesign/generator-wojo-frontend)
 
-> [Yeoman](http://yeoman.io) generator for Bourbon Neat and Bitters.
+> [Yeoman](http://yeoman.io) generator
 
 
 ## Getting Started
 
+### What is Yeoman?
 
-###generator-bourbon-neat
-An easy and straight-forward generator to get you up and running with a full Wojo Design frontend project using [Bourbon](http://bourbon.io/), [Neat](http://neat.bourbon.io/) and [Bitters](http://http://bitters.bourbon.io/). The generator makes the standard useful directory structure for a web project, get you a starter gulp file, bitters/bourbon/neat and SASS.
+Trick question. It's not a thing. It's this guy:
 
-### Requirements
-node.js
-npm (this comes with node these days)
-gulp
-bower
+![](http://i.imgur.com/JHaAlBJ.png)
 
-### Installation
+Basically, he wears a top hat, lives in your computer, and waits for you to tell him what kind of application you wish to create.
 
-
-To install cd to the root of this repo "generator-wojo-frontend" and run:
+Not every new computer comes with a Yeoman pre-installed. He lives in the [npm](https://npmjs.org) package repository. You only have to ask for him once, then he packs up and moves into your hard drive. *Make sure you clean up, he likes new and shiny things.*
 
 ```bash
-$ npm link
+npm install -g yo
 ```
 
-Run it like so:
+### Yeoman Generators
+
+Yeoman travels light. He didn't pack any generators when he moved in. You can think of a generator like a plug-in. You get to choose what type of application you wish to create, such as a Backbone application or even a Chrome extension.
+
+To install generator-wojo-frontend from npm, run:
 
 ```bash
-$ yo wojo-frontend
+npm install -g generator-wojo-frontend
 ```
 
+Finally, initiate the generator:
+
+```bash
+yo wojo frontend
+```
+
+### Getting To Know Yeoman
+
+Yeoman has a heart of gold. He's a person with feelings and opinions, but he's very easy to work with. If you think he's too opinionated, he can be easily convinced.
+
+If you'd like to get to know Yeoman better and meet some of his friends, [Grunt](http://gruntjs.com) and [Bower](http://bower.io), check out the complete [Getting Started Guide](https://github.com/yeoman/yeoman/wiki/Getting-Started).
+
+
+## License
+
+MIT
