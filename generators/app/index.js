@@ -94,7 +94,8 @@ module.exports = yeoman.generators.Base.extend({
         this.templatePath('_gitignore'),
         this.destinationPath('.gitignore'),
         {
-          type: this.props.type
+          type: this.props.type,
+          publicPath: this.props.publicPath
         }
       );
 
