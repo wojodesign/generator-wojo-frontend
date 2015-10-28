@@ -1,7 +1,4 @@
-# Wojo Bourbon Neat Bitters Generator
-
-> [Yeoman](http://yeoman.io) generator for Bourbon Neat and Bitters.
-
+# Wojo Frontend Generator
 
 ## Getting Started
 
