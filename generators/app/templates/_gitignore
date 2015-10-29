@@ -1,0 +1,15 @@
+.DS_Store
+*.sass-cache
+node_modules
+<%= publicPath %>
+<% if (type == 'Wordpress') { %>
+/shared
+/local-config.php
+/sql-dump-*.sql
+/db-sync
+/content/upgrade/
+<% } %>
+<% if (type == 'ExpressionEngine') { %>
+/config/config.local.php
+/public/images/uploads
+<% } %>
