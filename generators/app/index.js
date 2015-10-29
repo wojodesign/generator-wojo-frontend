@@ -150,6 +150,22 @@ module.exports = yeoman.generators.Base.extend({
         this.destinationPath(this.props.sourcePath + '/vendor')
       );
 
+      //sass
+      this.fs.copy(
+        this.templatePath('_scss/**/*'),
+        this.destinationPath(this.props.sourcePath + '/scss')
+      );
+      //images
+      this.fs.copy(
+        this.templatePath('_images/**/*'),
+        this.destinationPath(this.props.sourcePath + '/images')
+      );
+      //fonts
+      this.fs.copy(
+        this.templatePath('_fonts/**/*'),
+        this.destinationPath(this.props.sourcePath + '/fonts')
+      );
+
 
 
       //Templates/Markup
