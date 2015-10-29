@@ -27,8 +27,8 @@ module.exports = yeoman.generators.Base.extend({
       message: 'What\'s your name (the author)? (tip: don\'t say Kyle Deming)',
       default: '',
       validate: function(input){
-        if( input == 'Kyle Deming' ){
-          return false;
+        if( input.toLowerCase() == 'kyle deming' ){
+          return 'Get outta here deming';
         } else{
           return true;
         }
@@ -42,7 +42,13 @@ module.exports = yeoman.generators.Base.extend({
         //'Craft',
         'Wordpress',
         'A CMS is for suckers!'
-      ]
+      ],
+    }, {
+      when: function(response){
+        return response.type != 'A CMS is for suckers!';
+      },
+      name: 'url',
+      message: 'What is your local development url (with port number)'
     }];
 
     this.prompt(prompts, function (props) {
@@ -127,6 +133,16 @@ module.exports = yeoman.generators.Base.extend({
       this.fs.delete(
         this.destinationPath('gulpfile.js/config/_index.js')
       )
+
+      this.fs.copyTpl(
+        this.templatePath('_gulpfile.js/config/_browserSync.js'),
+        this.destinationPath('gulpfile.js/config/browserSync.js'),
+        this.props
+      );
+      this.fs.delete(
+        this.destinationPath('gulpfile.js/config/_browserSync.js')
+      )
+
 
       //bower
       this.fs.copyTpl(
